@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "doggyapp"
+    }
+  },
+  "defaultProject": "doggyapp",
+  "cli": {
+    "analytics": false
+  }
 }

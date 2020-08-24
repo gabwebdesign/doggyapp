@@ -1,0 +1,9 @@
+<div  class="row justify-content-center">
+    <div class="col-12 col-sm-4">
+        <div *ngFor="let user of list">
+            <doggy-user-card [user]="user" (onUserSelected)="showUserInfo($event)"></doggy-user-card>
+        </div>
+    </div>
+</div>
+
+

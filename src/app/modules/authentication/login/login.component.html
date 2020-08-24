@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-6 col-md-4">
+        <h1></h1>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div class="form-group">
+            <input 
+                type="user" 
+                name="user" 
+                id="user" 
+                class="form-control" 
+                placeholder="User"
+                [(ngModel)]="credentials.user"
+                #user="ngModel"
+                required />
+          </div>
+          <p class="error" *ngIf="submitted && user.errors?.required">User required</p>
+          <div class="form-group">
+            <input 
+              type="password" 
+              name="password" 
+              id="password" 
+              class="form-control" 
+              placeholder="Password"
+              [(ngModel)]="credentials.password" 
+              #password="ngModel"
+              required/>
+          </div>
+          <p class="error" *ngIf="submitted && password.errors?.required">Password required</p>
+          <div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+          </div>
+  
+          <div class="form-group group2">
+            <div class="text-right"><a routerLink="/forgot-password" class="text-sm font-weight-bold">Forgot password?</a></div>
+            <div class="text-right"><a routerLink="/sign-up" class="text-sm font-weight-bold">Sign Up</a>
+              
+            </div>
+          </div>
+  
+
+        </form>
+  
+      </div>
+    </div>
+  </div>

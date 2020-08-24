@@ -1,0 +1,5 @@
+<div  class="row justify-content-center">
+    <div class="col-12 col-sm-7">
+        <doggy-user-card *ngIf='user' [user]="user" (onUserSelected)="showUserInfo($event)"></doggy-user-card>
+    </div>
+</div>

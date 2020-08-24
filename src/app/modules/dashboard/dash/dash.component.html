@@ -1,0 +1,8 @@
+<div class="container stories">
+    <h1>Trending Stories</h1>
+    <div *ngFor="let item of stories">
+        <doggy-stories [story]=item></doggy-stories>
+    </div>
+    
+</div>
+<div class="button" routerLink="/order-service"><p class="button-name">Find Dog Lover</p></div>
