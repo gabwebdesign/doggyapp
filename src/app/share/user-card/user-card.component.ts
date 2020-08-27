@@ -45,14 +45,13 @@ export class UserCardComponent implements OnInit, OnChanges{
 
   public getAllPets(userid: number):any{ 
     this.securityService.getUserPets(userid).subscribe(
-      (result) => { 
+      (result: Pets[]) => { 
         this.listPets = result;
-        console.log('all pets', this.listPets);
+        //console.log('all pets', this.listPets);
       }
     )
   }
   
-
   public createModal(content: string):void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
   }
@@ -63,18 +62,18 @@ export class UserCardComponent implements OnInit, OnChanges{
     this.userID = this.authenticationService.userId;
     this.newPet.name = form.value.name;
     this.newPet.age = form.value.age;
-    this.newPet.age = form.value.age;
     this.newPet.race = form.value.brace;
     //this.newPet = new Pets();
 
     this.securityService.creatingNewPet(this.userID, this.newPet).subscribe(
       (result) => { 
         //console.log(result);
-        this.securityService.getUserPets(this.userID).subscribe(
-          (result) => { 
-            console.log(result)
-          }
-        )
+        this.submitted = false;
+        this.newPet.name = '';
+        this.newPet.age = 0;
+        this.newPet.race = '';
+        this.getAllPets(this.userID)
+        this.modalService.dismissAll();
       },
       (error) => { 
         console.log(error)
@@ -85,6 +84,7 @@ export class UserCardComponent implements OnInit, OnChanges{
   public petSelected(pet:Pets) { 
     console.log('Deleting', pet.id);
     this.securityService.deletePet(pet.id).subscribe();
+    this.getAllPets(this.authenticationService.userId)
   }
 
 }
