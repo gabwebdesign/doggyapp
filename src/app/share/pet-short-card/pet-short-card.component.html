@@ -1,0 +1,21 @@
+<ng-container *ngIf="pet">
+    <div class="pet-short-card-container d-flex flex-column">
+        <div class="profile-image overflow-hidden" >
+            <img src={{pet.pathImages[0]}} class="profile-img" *ngIf="pet.pathImages">
+        </div>
+            <div class="pet-data">
+                <div class="pet-name d-flex justify-content-center font-weight-bold">
+                    <p>{{ pet.name }}</p>
+                </div>
+                <div class="pet-stars d-flex justify-content-center">
+                    <p>{{ pet.stars | StarToNumbers }}</p>
+                </div>
+                <div class="age-container d-flex justify-content-center">
+                    <p class="age">{{ pet.age | age }}</p>
+                </div>
+                <div class="btn-container d-flex justify-content-center">
+                    <button class="btn btn-light">Select {{ pet.name }}</button>
+                </div>
+            </div>
+    </div>
+</ng-container>

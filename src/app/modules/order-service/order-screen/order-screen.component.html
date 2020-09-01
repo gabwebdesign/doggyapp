@@ -1,15 +1,25 @@
 <div class="container">
     <div class="row">
       <div class="col-sm">
-        One of three columns
+        <div *ngFor="let item of pets">
+          <doggy-pet-short-card [pet]=item></doggy-pet-short-card>
+        </div>
       </div>
       <div class="col-sm">
           <div *ngFor="let item of doglovers">
-            <doggy-doglovers-card  [lover]=item ></doggy-doglovers-card>
+            <doggy-doglovers-card  [lover]=item></doggy-doglovers-card>
           </div>
       </div>
       <div class="col-sm">
-        One of three columns
+        <div class="timepicker d-flex">
+          <div class="timepicker-container">
+            <p>Please choice the time to pick up:</p>
+            <doggy-timer-meridian></doggy-timer-meridian>
+          </div>
+        </div>
+        <div class='btn-order-service-container'>
+          <button class="btn btn-light">Order Service Now</button>
+        </div>
       </div>
     </div>
   </div>

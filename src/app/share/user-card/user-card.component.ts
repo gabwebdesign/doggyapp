@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Pets } from '../models/pets.model';
 import { SecurityService } from '../../core/services/security.service';
 import { AuthenticationService } from '../../core/services/authentication.service';
+import { ToastService } from '../../core/services/toast.service';
+import { faPlus} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'doggy-user-card',
@@ -22,6 +24,8 @@ export class UserCardComponent implements OnInit, OnChanges{
   public submitted: boolean;
   public errorMsg: string = '';
   public userID;
+
+  public plus = faPlus;
 
   constructor(private readonly modalService: NgbModal,
     private readonly securityService: SecurityService,
@@ -56,6 +60,8 @@ export class UserCardComponent implements OnInit, OnChanges{
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'})
   }
 
+
+
   public creatingPet(form): void{ 
     if (!form.valid) return
     this.submitted = true;
@@ -74,6 +80,7 @@ export class UserCardComponent implements OnInit, OnChanges{
         this.newPet.race = '';
         this.getAllPets(this.userID)
         this.modalService.dismissAll();
+
       },
       (error) => { 
         console.log(error)

@@ -1,0 +1,13 @@
+<ng-container *ngIf="jobs">
+    <div class='jobs-container d-inline-flex'>
+        <div *ngFor='let item of jobs; index as i'>
+            <div class="job">
+                <div class="icon">
+                    <fa-icon [icon]="iconArray[i]" size="lg"></fa-icon>
+                </div>
+                 <p class="services-title" [innerHTML]='item'></p>
+            </div>
+        </div>
+       
+    </div>
+</ng-container>

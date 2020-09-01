@@ -1,5 +1,29 @@
 <ng-container *ngIf="pet">
-    <div class="card mb-3 pet-card">
+
+    <div class="card-box d-flex flex-column overflow-hidden justify-content-center">
+        <div class="profile-image-container-card-box-pet overflow-hidden" *ngIf="pet.pathImages">
+            <doggy-ngb-carousel [images]="pet.pathImages"></doggy-ngb-carousel>
+        </div>
+        <div class="name-card-box">{{ pet.name }}</div>
+        <div class="data-card-box">{{ pet.stars | StarToNumbers }}</div>
+        <div class="data-card-box"><p class="age">{{ pet.age | age }}</p></div>
+        <div class="data-card-box pet-race">{{ pet.race }}</div>
+        <div class="data-card-box btn-delete"> 
+            <button class="btn  btn-outline-primary" [swal]="deleteSwal">Delete {{ pet.name }}</button>
+        </div>
+        <swal
+            #deleteSwal
+            title="Are you sur delete {{ pet.name }}?"
+            text=""
+            icon="question"
+            [showCancelButton]="true"
+            [focusCancel]="true"
+            (confirm)="petSelected(pet)">
+        </swal>
+    </div>
+
+
+    <!-- <div class="card mb-3 pet-card">
         <doggy-ngb-carousel [images]="pet.pathImages"></doggy-ngb-carousel>
         <div class="card-body">
             <div class="col-9"><p>{{ pet.name }} {{ pet.stars | StarToNumbers }}</p></div>
@@ -18,5 +42,5 @@
                 </div>
             </div>
         </div>
-    </div>       
+    </div>        -->
 </ng-container>

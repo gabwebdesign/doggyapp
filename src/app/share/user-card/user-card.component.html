@@ -1,6 +1,76 @@
 <ng-container *ngIf="user">
-    <div id="line"></div>
-    <div class="card mb-3 user-card">
+  <div class="wrapper d-flex justify-content-between">
+  <div class="card-box d-flex flex-column">
+      <div class="profile-image-container-card-box overflow-hidden">
+        <img src="../../../assets/profiles/profile_1.JPG" class="proflile-image-card-box">
+      </div>
+      <div class="name-card-box">{{ user.name }}</div>
+      <div class="data-card-box">{{ user.stars | StarToNumbers }}</div>
+      <div class="data-card-box"><p class="age">{{ user.age | age }}</p></div>
+      <div class="data-card-box">{{ user.address }}</div>
+      <!-- <button class="btn  btn-outline-primary"  (click)="createModal(content)">Create Pet</button> -->
+  </div>
+  <div class="card-box d-flex flex-column"  *ngFor="let item of listPets">
+    <doggy-pet-card [pet]="item"  (OnPetSelected)="petSelected(item)"></doggy-pet-card>
+  </div>
+
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Creating New Pet!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <form #petForm="ngForm" (ngSubmit)="creatingPet(petForm)">
+            <div class="form-group">
+                <input 
+                  type="text" 
+                  name="name" 
+                  id="name" 
+                  class="form-control" 
+                  placeholder="Name of your pet"
+                  [(ngModel)]="newPet.name"
+                  #name="ngModel"
+                  required />
+            </div>
+            <p class="error" *ngIf="submitted && name.errors?.required">Please enter name of your pet</p>
+            <div class="form-group">
+              <input 
+                type="number"
+                name="age" 
+                id="age" 
+                class="form-control" 
+                placeholder="Pet's age"
+                [(ngModel)]="newPet.age" 
+                #age="ngModel"
+                required/>
+            </div>
+            <p class="error" *ngIf="submitted && age.errors?.required">Please enter the age of your pet    </p>
+            <div class="form-group">
+                <input
+                    type="text"
+                    name="race"
+                    id="race"
+                    class="form-control"
+                    placeholder="race"
+                    [(ngModel)]="newPet.race"
+                    #race="ngModel"
+                    required
+                />
+            </div>
+            <p class="error" *ngIf="submitted && race.errors?.required">Please enter the race of your pet    </p>
+              <button type="submit" class="btn btn-primary">Create New Pet</button>
+        </form>
+    </div>
+</ng-template>
+
+<div class="card-box d-flex flex-column" (click)="createModal(content)">
+  <div class="data-card-box plus-icon"><fa-icon [icon]="plus" size="5x"></fa-icon></div>
+</div>
+
+    <!-- <div class="card mb-3 user-card">
         <img src="../../../assets/profiles/profile_1.JPG" class="card-img-top">
         <div class="card-body">
             <div class="col-9"><p>{{ user.name }} {{ user.stars | StarToNumbers }}</p></div>
@@ -14,57 +84,7 @@
                   </div>
                   <div class="col-sm-4">
 
-                    <ng-template #content let-c="close" let-d="dismiss">
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="modal-basic-title">Creating New Pet!</h4>
-                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
 
-                            <form #petForm="ngForm" (ngSubmit)="creatingPet(petForm)">
-                                <div class="form-group">
-                                    <input 
-                                      type="text" 
-                                      name="name" 
-                                      id="name" 
-                                      class="form-control" 
-                                      placeholder="Name of your pet"
-                                      [(ngModel)]="newPet.name"
-                                      #name="ngModel"
-                                      required />
-                                </div>
-                                <p class="error" *ngIf="submitted && name.errors?.required">Please enter name of your pet</p>
-                                <div class="form-group">
-                                  <input 
-                                    type="number"
-                                    name="age" 
-                                    id="age" 
-                                    class="form-control" 
-                                    placeholder="Pet's age"
-                                    [(ngModel)]="newPet.age" 
-                                    #age="ngModel"
-                                    required/>
-                                </div>
-                                <p class="error" *ngIf="submitted && age.errors?.required">Please enter the age of your pet    </p>
-                                <div class="form-group">
-                                    <input
-                                        type="text"
-                                        name="race"
-                                        id="race"
-                                        class="form-control"
-                                        placeholder="race"
-                                        [(ngModel)]="newPet.race"
-                                        #race="ngModel"
-                                        required
-                                    />
-                                </div>
-                                <p class="error" *ngIf="submitted && race.errors?.required">Please enter the race of your pet    </p>
-                                  <button type="submit" class="btn btn-primary">Create New Pet</button>
-                            </form>
-                        </div>
-                    </ng-template>
 
                     <button class="btn  btn-outline-primary"  (click)="createModal(content)">Create Pet</button>
                   </div>
@@ -75,6 +95,7 @@
     <div class="title">{{ user.name }}'s Pets:</div>
     <div *ngFor="let item of listPets">
       <doggy-pet-card [pet]="item"  (OnPetSelected)="petSelected(item)"></doggy-pet-card>
-    </div>
+    </div> -->
+  </div>
 </ng-container>
 

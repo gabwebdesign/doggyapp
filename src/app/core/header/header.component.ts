@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   public isLoggedIn: boolean;
   public userID: number;
   public userName: string;
+  public profileImage: string;
 
   constructor(
     private readonly evenHubService: EventsHubService,
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
           this.securityServices.getUser(this.userID).subscribe(
             (result) => { 
               this.userName = result["name"];
+              this.profileImage = result["profileImage"];
             }
           )
 
