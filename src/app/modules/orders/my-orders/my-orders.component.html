@@ -1,0 +1,6 @@
+<div class="orders-container d-flex flex-column">
+    <p>Yours Orders:</p>
+    <div *ngFor="let item of orders">
+        <doggy-order-card [order]=item (onOrderSelected)="inParentOrderSelected($event)"></doggy-order-card>
+    </div>
+</div>

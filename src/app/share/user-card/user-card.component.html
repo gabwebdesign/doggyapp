@@ -10,7 +10,7 @@
       <div class="data-card-box">{{ user.address }}</div>
       <!-- <button class="btn  btn-outline-primary"  (click)="createModal(content)">Create Pet</button> -->
   </div>
-  <div class="card-box d-flex flex-column"  *ngFor="let item of listPets">
+  <div class="card-box d-flex flex-column" *ngFor="let item of listPets">
     <doggy-pet-card [pet]="item"  (OnPetSelected)="petSelected(item)"></doggy-pet-card>
   </div>
 
@@ -61,7 +61,7 @@
                 />
             </div>
             <p class="error" *ngIf="submitted && race.errors?.required">Please enter the race of your pet    </p>
-              <button type="submit" class="btn btn-primary">Create New Pet</button>
+            <button type="submit" class="btn btn-primary">Create New Pet</button>
         </form>
     </div>
 </ng-template>
@@ -69,33 +69,6 @@
 <div class="card-box d-flex flex-column" (click)="createModal(content)">
   <div class="data-card-box plus-icon"><fa-icon [icon]="plus" size="5x"></fa-icon></div>
 </div>
-
-    <!-- <div class="card mb-3 user-card">
-        <img src="../../../assets/profiles/profile_1.JPG" class="card-img-top">
-        <div class="card-body">
-            <div class="col-9"><p>{{ user.name }} {{ user.stars | StarToNumbers }}</p></div>
-            <div class="container">
-                <div class="row">
-                  <div class="col-sm-4">
-                    {{ user.age | age }}
-                  </div>
-                  <div class="col-sm">
-                    {{ user.address }}
-                  </div>
-                  <div class="col-sm-4">
-
-
-
-                    <button class="btn  btn-outline-primary"  (click)="createModal(content)">Create Pet</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-    </div>
-    <div class="title">{{ user.name }}'s Pets:</div>
-    <div *ngFor="let item of listPets">
-      <doggy-pet-card [pet]="item"  (OnPetSelected)="petSelected(item)"></doggy-pet-card>
-    </div> -->
-  </div>
+</div>
 </ng-container>
 

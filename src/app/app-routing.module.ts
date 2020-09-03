@@ -29,6 +29,14 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'orders',
+    canLoad: [AuthGuard],
+    loadChildren: (): Promise<any> =>
+      import('./modules/orders/orders.module').then(
+        (module) => module.OrdersModule
+      ),
+  },
+  {
     path: 'users',
     canLoad: [AuthGuard],
     loadChildren: (): Promise<any> =>

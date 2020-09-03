@@ -7,7 +7,7 @@ import { AgePipe } from './pipes/age.pipe';
 import { JobsPipe } from './pipes/jobs.pipe';
 import { BarRatingModule } from "ngx-bar-rating";
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { NgbCarouselModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbTimepickerModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselComponent } from './ngb-carousel/ngb-carousel.component';
 import { FormsModule } from '@angular/forms';
 import { DogloversCardComponent } from './doglovers-card/doglovers-card.component';
@@ -17,9 +17,10 @@ import { DogloversServicesComponent } from './doglovers-services/doglovers-servi
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimerMeridianComponent } from './timer-meridian/timer-meridian.component';
 import { PetShortCardComponent } from './pet-short-card/pet-short-card.component';
+import { OrderCardComponent } from './order-card/order-card.component';
 
 @NgModule({
-  declarations: [PetCardComponent, UserCardComponent, StarToNumbers, AgePipe, JobsPipe, NgbCarouselComponent, DogloversCardComponent, DogloversServicesComponent,TimerMeridianComponent, PetShortCardComponent],
+  declarations: [PetCardComponent, UserCardComponent, StarToNumbers, AgePipe, JobsPipe, NgbCarouselComponent, DogloversCardComponent, DogloversServicesComponent,TimerMeridianComponent, PetShortCardComponent, OrderCardComponent],
   imports: [ CommonModule,BarRatingModule,SweetAlert2Module,NgbCarouselModule,FormsModule,FontAwesomeModule,NgbTimepickerModule],
   exports: [
     CommonModule,
@@ -28,6 +29,7 @@ import { PetShortCardComponent } from './pet-short-card/pet-short-card.component
     DogloversCardComponent,
     TimerMeridianComponent,
     PetShortCardComponent,
+    OrderCardComponent,
     AgePipe,JobsPipe,
     BarRatingModule,
     StarToNumbers,

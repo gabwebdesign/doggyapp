@@ -1,0 +1,24 @@
+<div class="orders d-flex flex-row justify-content-start" *ngIf="order">
+    <div class="time d-flex align-items-center justify-content-center">
+        <p class="parra font-weight-bold">{{ order.date }}<br>{{ order.time }}</p>
+    </div>
+    <div class="pet-name d-flex align-items-center justify-content-center font-weight-bold">
+        <p class="parra">{{ order.petName }}</p>
+    </div>
+
+    <div class="doglover-name d-flex align-items-center justify-content-center font-weight-bold">
+        <p class="parra">{{ order.dogloverName }} will contact with you soon</p>
+    </div>
+
+    <div class="action-container d-flex align-items-center justify-content-center font-weight-bold">
+        <p class="parra"  [swal]="deleteSwal">CANCEL</p>
+        <swal
+            #deleteSwal
+            title="Are you sure to delete the ride with {{ order.dogloverName }}?"
+            icon="question"
+            [showCancelButton]="true"
+            [focusCancel]="true"
+            (confirm)="orderSelected(order)">
+        </swal>
+    </div>
+</div>

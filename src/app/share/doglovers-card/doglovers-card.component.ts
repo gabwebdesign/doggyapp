@@ -19,37 +19,41 @@ export class DogloversCardComponent implements OnInit,OnChanges {
     ) { 
     
   }
-
+  
   ngOnInit(): void {
     (this.lover.active) ? this.selected = true : this.selected = false;
   }
 
   ngOnChanges():void{
-    (this.lover.active) ? this.selected = true : this.selected = false;
   }
 
-
-  public desactiveAllDogLovers(selectedLover:number){
-    this.dogLoverServices.getDoglovers().subscribe(
-      (result:DogLovers[])=>{
-        this.dogLovers = result;
-        this.dogLovers.map((lover)=>{
-          if(lover.id != selectedLover) this.dogLoverServices.desactiveDogLover(lover.id).subscribe();
-        });
-      }
-    )
+  public dogLoverSelected(value: DogLovers) {
+    this.OnDogLoverSelected.emit(value);
+    //this.lover.active = true;
+    this.selected = true;
   }
 
-  public dogLoverSelected(lover: DogLovers): void {
-    this.desactiveAllDogLovers(lover.id);
-    this.dogLoverServices.activeDogLover(lover.id).subscribe(
-      (result)=>{
-        this.selected = true;
-        this.ngOnChanges();
-      },
-      (error)=>{
-      }
-    )
-  }
+  // public desactiveAllDogLovers(selectedLover:number){
+  //   this.dogLoverServices.getDoglovers().subscribe(
+  //     (result:DogLovers[])=>{
+  //       this.dogLovers = result;
+  //       this.dogLovers.map((lover)=>{
+  //         if(lover.id != selectedLover) this.dogLoverServices.desactiveDogLover(lover.id).subscribe();
+  //       });
+  //     }
+  //   )
+  // }
+
+  // public dogLoverSelected(lover: DogLovers): void {
+  //   this.desactiveAllDogLovers(lover.id);
+  //   this.dogLoverServices.activeDogLover(lover.id).subscribe(
+  //     (result)=>{
+  //       this.lover.active = true;
+  //       this.selected = true;
+  //     },
+  //     (error)=>{
+  //     }
+  //   )
+  // }
 
 }

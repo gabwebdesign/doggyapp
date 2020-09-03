@@ -10,13 +10,17 @@ export class PetShortCardComponent implements OnInit {
   @Input() pet: Pets;
   @Output()  OnPetSelected = new EventEmitter<Pets>();
 
+  public selected:boolean=false;
+
   constructor() { }
 
   ngOnInit(): void {
+    (this.pet.active) ? this.selected = true : this.selected = false;
   }
 
   public petSelected(pet: Pets): void {
     this.OnPetSelected.emit(pet);
+    this.selected = true;
   }
 
 }

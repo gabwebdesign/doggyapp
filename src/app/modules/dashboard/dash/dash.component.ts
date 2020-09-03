@@ -22,7 +22,7 @@ export class DashComponent implements OnInit {
 
   ngOnInit(): void {
     this.gettingStories();
-    this.gettingDogLovers();
+    //this.gettingDogLovers();
   }
 
   public gettingStories(): void { 
@@ -37,15 +37,15 @@ export class DashComponent implements OnInit {
     )
   }
 
-  public gettingDogLovers():void{
-    this.dogLoverService.getDoglovers().subscribe(
-      (result:DogLovers[])=>{
-        this.dogLovers = result;
-        this.dogLovers.map((lover)=>{
-          this.dogLoverService.desactiveDogLover(lover.id).subscribe();
-        });
-      }
-    )
-  }
+  // public gettingDogLovers():void{
+  //   this.dogLoverService.getDoglovers().subscribe(
+  //     (result:DogLovers[])=>{
+  //       this.dogLovers = result;
+  //       this.dogLovers.map((lover)=>{
+  //         this.dogLoverService.desactiveDogLover(lover.id).subscribe();
+  //       });
+  //     }
+  //   )
+  // }
 
 }

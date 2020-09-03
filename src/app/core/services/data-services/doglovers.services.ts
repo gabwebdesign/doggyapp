@@ -19,8 +19,8 @@ export class DogloversService {
     return this.http.get(`${this.apiPath}/doglovers`);
   }
 
-  public getActiveDogLover(userId:number): Observable<any> { 
-    return this.http.get(`${this.apiPath}/doglovers/${ userId }/active`);
+  public getActiveDogLover(): Observable<any> { 
+    return this.http.get(`${this.apiPath}/doglovers?active=true`);
   }
 
   public activeDogLover(userId:number): Observable<any> { 

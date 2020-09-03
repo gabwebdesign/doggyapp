@@ -6,9 +6,10 @@ export class Pets {
     public race?: string,
     public pathImages?:[],
     public id?: number,
-    public stars?: number) { 
+    public stars?: number,
+    public active?: boolean) { 
     
     this.stars = 5;
-
+    this.active = false;
   }
 }
