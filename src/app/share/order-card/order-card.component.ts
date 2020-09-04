@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Orders } from '../models/orders.model'
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'doggy-order-card',
@@ -10,9 +11,14 @@ export class OrderCardComponent implements OnInit {
   @Input() order: Orders;
   @Output() onOrderSelected = new EventEmitter<Orders>();
 
-  constructor() { }
+  public roles:string
+
+  constructor(
+    private readonly authenticationServices:AuthenticationService
+  ) { }
 
   ngOnInit(): void {
+    this.roles = this.authenticationServices.getLoggedUser().roles;
   }
 
   public orderSelected(order: Orders):void{

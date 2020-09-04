@@ -18,15 +18,15 @@
                 <div class="form-group">
                     <input 
                       type="text" 
-                      name="title" 
-                      id="title" 
+                      name="name" 
+                      id="name" 
                       class="form-control" 
                       placeholder="Your Title"
                       [(ngModel)]="story.title"
-                      #title="ngModel"
+                      #name="ngModel"
                       required />
                 </div>
-                <p class="error" *ngIf="submitted && title.errors?.required">Please enter the title</p>
+                <p class="error" *ngIf="submitted && name.errors?.required">Please enter the title</p>
                 <div class="form-group">
                   <textarea 
                     name="summary" 

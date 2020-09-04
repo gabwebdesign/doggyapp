@@ -11,6 +11,7 @@ import { Orders } from 'src/app/share/models/orders.model';
 export class MyOrdersComponent implements OnInit {
 
   public orders:Orders[];
+  public roles:string;
 
   constructor(
     private readonly authenticationService:AuthenticationService,
@@ -18,7 +19,8 @@ export class MyOrdersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.authenticationService.getLoggedUser().roles == 'doglover'){
+    this.roles = this.authenticationService.getLoggedUser().roles;
+    if(this.roles == 'doglover'){
       this.gettingDogloverOrders(this.authenticationService.getLoggedUser().id);
     }else{
       this.gettingUserOrders(this.authenticationService.getLoggedUser().id);

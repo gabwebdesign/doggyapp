@@ -58,7 +58,23 @@ export class DashComponent implements OnInit {
 
   public creatingStory(form):void{
     this.submitted = true;
+    console.log(form.valid)
     if (!form.valid) return
+    let currentUser =  this.authenticationServices.getLoggedUser();
+    this.story.title = form.value.name;
+    this.story.summary = form.value.summary;
+    this.story.author = currentUser.name;
+    this.story.profileImage = currentUser.profileImage;
+    this.story.imagePath = this.stories[0].imagePath;
+    this.story.time = 'Last updated 3 mins ago';
+    this.modalService.dismissAll();
+
+    this.storyServices.createStory(this.story).subscribe(
+      (result)=>{
+        this.gettingStories();
+      }
+    );
+
   }
 
   // public gettingDogLovers():void{

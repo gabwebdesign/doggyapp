@@ -76,7 +76,7 @@
       "id": 2,
       "stars": 5,
       "userId": "1",
-      "active": false
+      "active": true
     },
     {
       "name": "Gala",
@@ -90,7 +90,7 @@
       "id": 3,
       "stars": 3,
       "userId": "1",
-      "active": true
+      "active": false
     },
     {
       "name": "magnus",
@@ -212,6 +212,26 @@
       "petName": "Gala",
       "userId": 1,
       "id": 10
+    },
+    {
+      "time": "10:36 am ",
+      "date": "2020/8/5",
+      "dogLoverId": 2,
+      "dogloverName": "Elizabeth Aguilar",
+      "petId": 10,
+      "petName": "aika",
+      "userId": 1,
+      "id": 11
+    },
+    {
+      "time": "10:50 am ",
+      "date": "2020/8/5",
+      "dogLoverId": 2,
+      "dogloverName": "Elizabeth Aguilar",
+      "petId": 2,
+      "petName": "Thor",
+      "userId": 1,
+      "id": 12
     }
   ]
 }

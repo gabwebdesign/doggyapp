@@ -2,13 +2,14 @@
   <div class="wrapper d-flex justify-content-between">
   <div class="card-box d-flex flex-column">
       <div class="profile-image-container-card-box overflow-hidden">
-        <img src="../../../assets/profiles/profile_1.JPG" class="proflile-image-card-box">
+        <img [src]="user.profileImage" class="proflile-image-card-box">
       </div>
       <div class="name-card-box">{{ user.name }}</div>
       <div class="data-card-box">{{ user.stars | StarToNumbers }}</div>
       <div class="data-card-box"><p class="age">{{ user.age | age }}</p></div>
       <div class="data-card-box">{{ user.address }}</div>
-      <!-- <button class="btn  btn-outline-primary"  (click)="createModal(content)">Create Pet</button> -->
+      <div class="data-card-box"> <button class="btn  btn-outline-primary logout-btn"  (click)="logOut()">Log Out</button></div>
+     
   </div>
   <div class="card-box d-flex flex-column" *ngFor="let item of listPets">
     <doggy-pet-card [pet]="item"  (OnPetSelected)="petSelected(item)"></doggy-pet-card>

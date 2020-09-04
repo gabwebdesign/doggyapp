@@ -6,15 +6,18 @@
         <p class="parra">{{ order.petName }}</p>
     </div>
 
-    <div class="doglover-name d-flex align-items-center justify-content-center font-weight-bold">
+    <div class="doglover-name d-flex align-items-center justify-content-center font-weight-bold" *ngIf="roles=='user'">
         <p class="parra">{{ order.dogloverName }} will contact with you soon</p>
+    </div>
+    <div class="doglover-name d-flex align-items-center justify-content-center font-weight-bold" *ngIf="roles=='doglover'">
+        <p class="parra">Please assist the ride</p>
     </div>
 
     <div class="action-container d-flex align-items-center justify-content-center font-weight-bold">
         <p class="parra"  [swal]="deleteSwal">CANCEL</p>
         <swal
             #deleteSwal
-            title="Are you sure to delete the ride with {{ order.dogloverName }}?"
+            title="Are you sure to delete this ride?"
             icon="question"
             [showCancelButton]="true"
             [focusCancel]="true"

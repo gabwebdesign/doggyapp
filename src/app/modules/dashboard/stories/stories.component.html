@@ -1,5 +1,5 @@
 <div class="card mb-3 story" style="float: left;">
-    <img src={{story.imagePath}} class="card-img-top">
+    <img [src]=story.imagePath class="card-img-top" *ngIf='story.imagePath'>
     <div class="card-body">
         <h5 class="card-title">{{ story.title }}</h5>
         <p class="card-text">{{ story.summary }}</p>
@@ -12,7 +12,7 @@
         <div class="author">
             <div>{{ story.author }}</div>
             <div class="profile-mask">
-                <img src={{story.profileImage}} class="profile">
+                <img [src]=story.profileImage class="profile">
             </div>
         </div>
     </div>

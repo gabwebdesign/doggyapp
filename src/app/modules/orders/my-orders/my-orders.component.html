@@ -1,5 +1,6 @@
 <div class="orders-container d-flex flex-column">
-    <p>Yours Orders:</p>
+    <div class="title d-flex font-weight-bold justify-content-center"  *ngIf="roles =='doglover'"><div><p>Your Pending Orders:</p></div></div>
+    <div class="title d-flex font-weight-bold justify-content-center"  *ngIf="roles =='user'"><div><p>Yours Rides Pending:</p></div></div>
     <div *ngFor="let item of orders">
         <doggy-order-card [order]=item (onOrderSelected)="inParentOrderSelected($event)"></doggy-order-card>
     </div>

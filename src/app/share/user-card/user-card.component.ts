@@ -62,13 +62,13 @@ export class UserCardComponent implements OnInit{
   public creatingPet(form): void{ 
     if (!form.valid) return
     this.submitted = true;
-    this.userID = this.authenticationService.userId;
+    this.userID = this.authenticationService.getLoggedUser().id;
     this.newPet.name = form.value.name;
     this.newPet.age = form.value.age;
     this.newPet.race = form.value.brace;
     //this.newPet = new Pets();
 
-    this.securityService.creatingNewPet(this.userID, this.newPet).subscribe(
+    this.petServices.creatingNewPet(this.userID, this.newPet).subscribe(
       (result) => { 
         //console.log(result);
         this.submitted = false;
@@ -86,8 +86,12 @@ export class UserCardComponent implements OnInit{
 
   public petSelected(pet:Pets) { 
     console.log('Deleting', pet.id);
-    this.securityService.deletePet(pet.id).subscribe();
+    this.petServices.deletePet(pet.id).subscribe();
     this.getAllPets(this.authenticationService.getLoggedUser().id)
+  }
+
+  public logOut(){
+    this.authenticationService.logout();
   }
 
 }

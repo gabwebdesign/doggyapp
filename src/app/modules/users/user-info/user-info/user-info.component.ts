@@ -27,7 +27,7 @@ export class UserInfoComponent implements OnInit {
       (result) => {
         this.isLoggedIn = result;
         if (this.isLoggedIn) {
-          this.userID = this.authenticationService.userId;
+          this.userID = this.authenticationService.getLoggedUser().id;
           this.securityServices.getUser(this.userID).subscribe(
             (result) => {
               this.user = result;

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CONFIG } from '../../../config/config';
+import { Pets } from 'src/app/share/models/pets.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,14 @@ export class PetsService {
 
   public desactivePet(userId:number): Observable<any> { 
     return this.http.patch(`${this.apiPath}/pets/${ userId }/`,{ active:false });
+  }
+
+  public creatingNewPet(userID: number,body:Pets): Observable<any>{
+    return this.http.post(`${this.apiPath}/users/${userID}/pets`, body);
+  }
+
+  public deletePet(petId: number): Observable<any> {
+    return this.http.delete(`${this.apiPath}/pets/${petId}`);
   }
   
 }

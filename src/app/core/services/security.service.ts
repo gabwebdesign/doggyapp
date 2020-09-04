@@ -28,18 +28,6 @@ export class SecurityService {
     return this.http.post(`${this.apiPath}/forgotPassword`, {emailAddress: email});
   }
 
-  public getPets(): Observable<any>{
-    return this.http.get(`${this.apiPath}/pets`);
-  }
-
-  public getUserPets(userID: number): Observable<any>{
-    return this.http.get(`${this.apiPath}/users/${userID}/pets`);
-  }
-
-  public getWalkers(): Observable<any>{
-    return this.http.get(`${this.apiPath}/walkers`);
-  }
-
   public getUsers(): Observable<any>{
     return this.http.get(`${this.apiPath}/users`);
   }
@@ -48,11 +36,4 @@ export class SecurityService {
     return this.http.get(`${this.apiPath}/users/${userID}`);
   }
 
-  public creatingNewPet(userID: number,body:Pets): Observable<any>{
-    return this.http.post(`${this.apiPath}/users/${userID}/pets`, body);
-  }
-
-  public deletePet(petId: number): Observable<any> {
-    return this.http.delete(`${this.apiPath}/pets/${petId}`).pipe(timeout(CONFIG.timeoutRequest));
-  }
 }
