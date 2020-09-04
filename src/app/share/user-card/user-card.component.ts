@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Users } from '../models/users.model';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,13 +6,15 @@ import { Pets } from '../models/pets.model';
 import { SecurityService } from '../../core/services/security.service';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { faPlus} from '@fortawesome/free-solid-svg-icons';
+import { PetsService } from 'src/app/core/services/data-services/pets.services';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'doggy-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.sass']
 })
-export class UserCardComponent implements OnInit, OnChanges{
+export class UserCardComponent implements OnInit{
   @Input() user: Users;
   @Output() onUserSelected = new EventEmitter<Users>();
   @Output() onRefreshList = new EventEmitter<Users>();
@@ -29,16 +31,12 @@ export class UserCardComponent implements OnInit, OnChanges{
   constructor(private readonly modalService: NgbModal,
     private readonly securityService: SecurityService,
     private readonly authenticationService: AuthenticationService,
+    private readonly petServices:PetsService
   ) { }
 
   ngOnInit(): void {
     this.newPet = new Pets();
-    this.getAllPets(this.authenticationService.userId);
-  }
-
-  ngOnChanges(changes): void{
-    console.log('Changes');
-    console.log(changes);
+    this.getAllPets(this.authenticationService.getLoggedUser().id);
   }
 
   public userSelected(user: Users): void {
@@ -46,11 +44,13 @@ export class UserCardComponent implements OnInit, OnChanges{
     this.onUserSelected.emit(user);  
   }
 
-  public getAllPets(userid: number):any{ 
-    this.securityService.getUserPets(userid).subscribe(
-      (result: Pets[]) => { 
+  public getAllPets(userId:number):any{ 
+    this.petServices.getUserPets(userId).subscribe(
+      (result:Pets[])=>{
         this.listPets = result;
-        //console.log('all pets', this.listPets);
+      },
+      (error)=>{
+        console.log(error)
       }
     )
   }
@@ -87,7 +87,7 @@ export class UserCardComponent implements OnInit, OnChanges{
   public petSelected(pet:Pets) { 
     console.log('Deleting', pet.id);
     this.securityService.deletePet(pet.id).subscribe();
-    this.getAllPets(this.authenticationService.userId)
+    this.getAllPets(this.authenticationService.getLoggedUser().id)
   }
 
 }

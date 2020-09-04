@@ -2,6 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { LoggedGuard } from './core/guards/logged.guard';
+import { PermissionGuard } from './core/guards/permission.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'order-service',
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard,PermissionGuard],
+    data: { roleNeeded: 'user' },
     loadChildren: (): Promise<any> =>
       import('./modules/order-service/order-service.module').then(
         (module) => module.OrderServiceModule
@@ -47,7 +49,7 @@ const routes: Routes = [
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: '',
+    redirectTo: '/dashboard',
   }
 ];
 

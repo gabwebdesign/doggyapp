@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
   public token: string;
   public userId: number;
+  public roles: string;
   private loggedUser;
 
   constructor(
@@ -25,6 +26,7 @@ export class AuthenticationService {
         this.token = authData.token;
         this.loggedUser = authData.loggedUser;
         this.userId = authData.userId;
+        this.roles = authData.roles;
         this.eventSHubService.setLoggedIn(true);
       }
 
@@ -37,16 +39,23 @@ export class AuthenticationService {
           (result) => { 
             this.token = result.token;
             this.userId = result.userId;
-            this.eventSHubService.setLoggedIn(true)
-            //this.router.navigateByUrl('/dashboard');
+            
+            this.securityService.getUser(this.userId).subscribe(
+              (result)=>{
+                this.loggedUser = result;
 
-            this.localStorageService.set('authData', {
-              token: this.token,
-              loggedUser: this.loggedUser,
-              userId:this.userId
-            });
+                this.eventSHubService.setLoggedIn(true)
+                //this.router.navigateByUrl('/dashboard');
+    
+                this.localStorageService.set('authData', {
+                  token: this.token,
+                  loggedUser: this.loggedUser,
+                });
 
-            resolve(result);
+                resolve(result);
+
+                }            
+              )
           },
           (error) => { 
             reject(error)

@@ -47,13 +47,14 @@ export class OrderScreenComponent implements OnInit {
   ngOnInit(): void {
     this.gettingDogLovers();
     this.gettingPets();
-    this.userID = this.authenticationService.userId;
+    this.userID = this.authenticationService.getLoggedUser().id;
     this.time = {hour: this.h, minute: this.m };
     (this.h> 12 ) ? this.meridian = false : this.meridian= true;
+    console.log(this.authenticationService.getLoggedUser())
   }
 
   public gettingPets(){
-    this.petsService.getUserPets(this.authenticationService.userId).subscribe(
+    this.petsService.getUserPets(this.authenticationService.getLoggedUser().id).subscribe(
       (result: Pets[])=>{
         //console.log('pets form oder screen component',result);
         this.pets = result;

@@ -15,7 +15,11 @@ export class PetsService {
   ) { }
 
   public getUserPets(userID: number): Observable<any>{
-    return this.http.get(`${this.apiPath}/users/${userID}/pets`);
+    return this.http.get(`${this.apiPath}/pets/?userId=${userID}`);
+  }
+
+  public getPets(): Observable<any>{
+    return this.http.get(`${this.apiPath}/pets/`);
   }
 
   public getActivePet(): Observable<any> { 

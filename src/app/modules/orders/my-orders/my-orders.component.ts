@@ -18,13 +18,18 @@ export class MyOrdersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.gettingOrders(this.authenticationService.userId);
+    if(this.authenticationService.getLoggedUser().roles == 'doglover'){
+      this.gettingDogloverOrders(this.authenticationService.getLoggedUser().id);
+    }else{
+      this.gettingUserOrders(this.authenticationService.getLoggedUser().id);
+    }
   }
 
-  private gettingOrders(userid:number):void{
+  private gettingUserOrders(userid:number):void{
     this.ordersServices.getUserOrders(userid).subscribe(
       (result: Orders[])=>{
         this.orders = result;
+        console.log('yours orders ',this.orders)
       },
       (error)=>{
         console.log(error);
@@ -32,11 +37,25 @@ export class MyOrdersComponent implements OnInit {
     )
   }
 
+  private gettingDogloverOrders(userid:number):void{
+    this.ordersServices.getDogloverOrders(userid).subscribe(
+      (result: Orders[])=>{
+        this.orders = result;
+        console.log('yours orders ',this.orders)
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+  }
+
+
+
   public inParentOrderSelected(item:Orders):void{
     console.log('from parent deleted', item);
     this.ordersServices.cancelOrder(item.id).subscribe(
       (result)=>{
-        this.gettingOrders(this.authenticationService.userId);
+        this.gettingUserOrders(this.authenticationService.getLoggedUser().id);
       }
     );
   }

@@ -1,8 +1,48 @@
-<div class="container stories">
-    <h1>Trending Stories</h1>
+<div class="stories-title d-flex justify-content-center"><h1>Trending Stories</h1></div>
+<div class="container stories d-flex flex-wrap justify-content-between">
     <div *ngFor="let item of stories">
         <doggy-stories [story]=item></doggy-stories>
     </div>
-    
+    <div class="stories-footer d-flex justify-content-center" *ngIf="roles=='doglover'"  (click)="createModal(content)"><div class="plus-container"><fa-icon [icon]="plus" size="2x"></fa-icon></div></div>
+    <div class="button d-flex align-items-center justify-content-center" *ngIf="roles=='user'" routerLink="/order-service"><p class="button-p font-weight-bold">FIND DOGLOVER</p></div>
+    <div class="button d-flex align-items-center justify-content-center" *ngIf="roles=='doglover'" routerLink="/orders"><p class="button-p font-weight-bold">YOUR ORDERS PENDING</p></div>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Creating New Story!</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #storyForm="ngForm" (ngSubmit)="creatingStory(storyForm)">
+                <div class="form-group">
+                    <input 
+                      type="text" 
+                      name="title" 
+                      id="title" 
+                      class="form-control" 
+                      placeholder="Your Title"
+                      [(ngModel)]="story.title"
+                      #title="ngModel"
+                      required />
+                </div>
+                <p class="error" *ngIf="submitted && title.errors?.required">Please enter the title</p>
+                <div class="form-group">
+                  <textarea 
+                    name="summary" 
+                    id="summary" 
+                    class="form-control" 
+                    cols="35" 
+                    rows="8"
+                    placeholder="Please tell us what happened on ride"
+                    [(ngModel)]="story.summary" 
+                    #summary="ngModel"
+                    required>
+                </textarea>
+                </div>
+                <p class="error" *ngIf="submitted && summary.errors?.required">Please tell us something</p>
+                <button type="submit" class="btn btn-primary">Create New Story</button>
+            </form>
+        </div>
+    </ng-template>
 </div>
-<div class="button" routerLink="/order-service"><p class="button-name">Find Dog Lover</p></div>

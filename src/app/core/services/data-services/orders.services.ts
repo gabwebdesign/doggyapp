@@ -23,6 +23,10 @@ export class OrdersService {
     return this.http.get(`${this.apiPath}/orders/?userId=${userID}`);
   }
 
+  public getDogloverOrders(userID: number): Observable<any>{
+    return this.http.get(`${this.apiPath}/orders/?dogLoverId=${userID}`);
+  }
+
   public cancelOrder(orderId:number): Observable<any> { 
     return this.http.delete(`${this.apiPath}/orders/${orderId}`);
   }

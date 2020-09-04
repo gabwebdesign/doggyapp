@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventsHubService } from '../services/events-hub.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { SecurityService } from '../services/security.service';
+import { Users } from 'src/app/share/models/users.model';
 
 @Component({
   selector: 'doggy-header',
@@ -11,7 +12,7 @@ import { SecurityService } from '../services/security.service';
 export class HeaderComponent implements OnInit {
 
   public isLoggedIn: boolean;
-  public userID: number;
+  public loginUser: Users;
   public userName: string;
   public profileImage: string;
 
@@ -27,14 +28,7 @@ export class HeaderComponent implements OnInit {
       (result) => { 
         this.isLoggedIn = result;
         if(this.isLoggedIn) { 
-          this.userID = this.authenticationService.userId;
-          this.securityServices.getUser(this.userID).subscribe(
-            (result) => { 
-              this.userName = result["name"];
-              this.profileImage = result["profileImage"];
-            }
-          )
-
+          this.loginUser = this.authenticationService.getLoggedUser();
         }
       }
     )
