@@ -8,6 +8,8 @@ import { AuthenticationService } from '../../core/services/authentication.servic
 import { faPlus} from '@fortawesome/free-solid-svg-icons';
 import { PetsService } from 'src/app/core/services/data-services/pets.services';
 import { ThrowStmt } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'doggy-user-card',
@@ -25,18 +27,21 @@ export class UserCardComponent implements OnInit{
   public submitted: boolean;
   public errorMsg: string = '';
   public userID;
+  public roles:string;
 
   public plus = faPlus;
 
   constructor(private readonly modalService: NgbModal,
     private readonly securityService: SecurityService,
     private readonly authenticationService: AuthenticationService,
-    private readonly petServices:PetsService
+    private readonly petServices:PetsService,
+    private readonly toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.newPet = new Pets();
     this.getAllPets(this.authenticationService.getLoggedUser().id);
+    this.roles =  this.authenticationService.getLoggedUser().roles;
   }
 
   public userSelected(user: Users): void {
@@ -77,6 +82,7 @@ export class UserCardComponent implements OnInit{
         this.newPet.race = '';
         this.getAllPets(this.userID)
         this.modalService.dismissAll();
+        this.toastr.success('YOUR DOG HAS BEEN CREATED', 'Toastr fun!');
       },
       (error) => { 
         console.log(error)

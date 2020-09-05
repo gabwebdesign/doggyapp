@@ -8,6 +8,7 @@ import { faPlus} from '@fortawesome/free-solid-svg-icons';
 import { PermissionsService } from '../../../core/services/permissions/permissions.services';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment'; 
 
 @Component({
   selector: 'doggy-dash',
@@ -21,6 +22,7 @@ export class DashComponent implements OnInit {
   public roles:string;
   public story:Stories = new Stories();
   public submitted: boolean;
+
 
   constructor(
     private petService: SecurityService,
@@ -66,7 +68,11 @@ export class DashComponent implements OnInit {
     this.story.author = currentUser.name;
     this.story.profileImage = currentUser.profileImage;
     this.story.imagePath = this.stories[0].imagePath;
-    this.story.time = 'Last updated 3 mins ago';
+
+    let now = moment();
+    let time= now.startOf('hour').fromNow()
+
+    this.story.time = time;
     this.modalService.dismissAll();
 
     this.storyServices.createStory(this.story).subscribe(

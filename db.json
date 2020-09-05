@@ -1,7 +1,7 @@
 {
   "login": {
     "token": "858999909HJKJGHLKHJGKJ0",
-    "userId": 2
+    "userId": 1
   },
   "doglovers": [
     {
@@ -107,6 +107,22 @@
       "userId": "1",
       "id": 10,
       "active": false
+    },
+    {
+      "name": "Elizabeth",
+      "age": 2,
+      "stars": 5,
+      "active": false,
+      "userId": "1",
+      "id": 11
+    },
+    {
+      "name": "Elizabeth",
+      "age": 5,
+      "stars": 5,
+      "active": false,
+      "userId": "1",
+      "id": 12
     }
   ],
   "stories": [
@@ -204,16 +220,6 @@
       "id": 9
     },
     {
-      "time": "21:19 pm ",
-      "date": "2020/8/4",
-      "dogLoverId": 2,
-      "dogloverName": "Elizabeth Aguilar",
-      "petId": 3,
-      "petName": "Gala",
-      "userId": 1,
-      "id": 10
-    },
-    {
       "time": "10:36 am ",
       "date": "2020/8/5",
       "dogLoverId": 2,
@@ -232,6 +238,16 @@
       "petName": "Thor",
       "userId": 1,
       "id": 12
+    },
+    {
+      "time": "12:26 am ",
+      "date": "2020/8/5",
+      "dogLoverId": 2,
+      "dogloverName": "Elizabeth Aguilar",
+      "petId": 2,
+      "petName": "Thor",
+      "userId": 1,
+      "id": 14
     }
   ]
 }

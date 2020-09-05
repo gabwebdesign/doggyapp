@@ -5,7 +5,7 @@
         <img [src]="user.profileImage" class="proflile-image-card-box">
       </div>
       <div class="name-card-box">{{ user.name }}</div>
-      <div class="data-card-box">{{ user.stars | StarToNumbers }}</div>
+      <div class="data-card-box">{{ user.stars | StarToNumbers }} <span *ngIf="roles=='doglover'"> DogLover Premium</span></div>
       <div class="data-card-box"><p class="age">{{ user.age | age }}</p></div>
       <div class="data-card-box">{{ user.address }}</div>
       <div class="data-card-box"> <button class="btn  btn-outline-primary logout-btn"  (click)="logOut()">Log Out</button></div>
@@ -67,7 +67,7 @@
     </div>
 </ng-template>
 
-<div class="card-box d-flex flex-column" (click)="createModal(content)">
+<div class="card-box d-flex flex-column" (click)="createModal(content)" *ngIf="roles=='user'">
   <div class="data-card-box plus-icon"><fa-icon [icon]="plus" size="5x"></fa-icon></div>
 </div>
 </div>

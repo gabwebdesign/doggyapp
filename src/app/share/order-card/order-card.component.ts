@@ -25,4 +25,5 @@ export class OrderCardComponent implements OnInit {
     this.onOrderSelected.emit(order);
   }
 
+
 }

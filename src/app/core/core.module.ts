@@ -7,10 +7,12 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
-  imports: [CommonModule,FormsModule,RouterModule,SweetAlert2Module.forRoot()],
+  imports: [CommonModule,FormsModule,RouterModule,SweetAlert2Module.forRoot(),ToastrModule.forRoot()],
   exports: [
     RouterModule,FormsModule,
     HeaderComponent, FooterComponent,SweetAlert2Module

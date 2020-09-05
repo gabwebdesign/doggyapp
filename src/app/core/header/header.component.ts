@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   public loginUser: Users;
   public userName: string;
   public profileImage: string;
+  public roles:string;
 
   constructor(
     private readonly evenHubService: EventsHubService,
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit {
         this.isLoggedIn = result;
         if(this.isLoggedIn) { 
           this.loginUser = this.authenticationService.getLoggedUser();
+          this.roles= this.authenticationService.getLoggedUser().roles;
         }
       }
     )
